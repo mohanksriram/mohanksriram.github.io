@@ -50,7 +50,7 @@ export interface WebsiteConfig {
 
 const config: WebsiteConfig = {
   title: 'Mohankumar Sriram',
-  description: 'I am a software engineer. I blog about supervised learning, unsupervised learning and re-inforcement learning ',
+  description: "I'm a software engineer. I blog about supervised learning, unsupervised learning and reinforcement learning",
   coverImage: 'img/blog-cover.jpg',
   logo: 'img/ghost-logo.png',
   lang: 'en',

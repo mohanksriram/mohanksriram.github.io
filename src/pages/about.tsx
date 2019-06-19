@@ -51,8 +51,8 @@ const About: React.FunctionComponent = () => (
 
             <div className="post-content">
               <p>
-                I'm a software engineer interested in meta learning in the context of domains
-                ranging from computer vision, NLP and reinforcement learning. Have a look at my <a href="https://github.com/mohankumarSriram/cv/blob/master/cv.pdf"> resume </a>
+                I'm a software engineer interested in the application of artificial intelligence in the context of robotics and healthcare.
+                Have a look at my <a href="https://github.com/mohankumarSriram/cv/blob/master/cv.pdf"> resume </a>
                  for more
                 information.
               </p>

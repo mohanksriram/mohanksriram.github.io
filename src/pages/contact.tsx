@@ -47,7 +47,7 @@ const About: React.FunctionComponent = () => (
           <PostFullContent className="post-full-content">
             <div className="post-content">
               <p>
-                You can reach me at: mohankumarsriram7 at gmail dot com
+                You can reach me at: mohankumarsriram7@gmail.com
               </p>
             </div>
           </PostFullContent>

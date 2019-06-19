@@ -9,7 +9,6 @@ import { PostFullHeader, PostFullTitle, PostFull } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
 import Footer from '../components/Footer';
 import Helmet from 'react-helmet';
-import profilePic from '../content/avatars/mohan.jpg';
 import {Link} from 'gatsby';
 
 const PageTemplate = css`
@@ -31,7 +30,7 @@ const profileImage = css`
 const About: React.FunctionComponent = () => (
   <IndexLayout>
     <Helmet>
-      <title>About</title>
+      <title>Contact</title>
     </Helmet>
     <Wrapper css={PageTemplate}>
       <header css={[outer, SiteHeader]}>
@@ -42,19 +41,13 @@ const About: React.FunctionComponent = () => (
       <main id="site-main" className="site-main" css={[SiteMain, outer]}>
         <article className="post page" css={[PostFull]}>
           <PostFullHeader>
-            <PostFullTitle>About</PostFullTitle>
+            <PostFullTitle>Contact</PostFullTitle>
           </PostFullHeader>
 
           <PostFullContent className="post-full-content">
-          <img src={profilePic} css={profileImage}>
-            </img>
-
             <div className="post-content">
               <p>
-                I'm a software engineer interested in meta learning in the context of domains
-                ranging from computer vision, NLP and reinforcement learning. Have a look at my <a href="https://github.com/mohankumarSriram/cv/blob/master/cv.pdf"> resume </a>
-                 for more
-                information.
+                You can reach me at: mohankumarsriram7 at gmail dot com
               </p>
             </div>
           </PostFullContent>

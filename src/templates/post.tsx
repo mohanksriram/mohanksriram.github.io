@@ -83,7 +83,14 @@ export const PostFullTitle = styled.h1`
   }
 `;
 
-const PostFullImage = styled.figure`
+export const ProfileImage = styled.img`
+  margin: 0;
+  height: 10rem;
+  width: 8rem;
+  border-radius: 50%;
+`;
+
+export const PostFullImage = styled.figure`
   margin: 0 -10vw -165px;
   height: 800px;
   background: ${colors.lightgrey} center center;

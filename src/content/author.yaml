@@ -1,0 +1,25 @@
+- id: Ghost
+  avatar: avatars/ghost.png
+  bio: Software Engineer interested in the application of artificial intelligence for Robotics and Healthcare.
+  twitter: mk_hades
+  #facebook: ghost
+  website: https://neospec.in/
+  location: Bengaluru, India
+
+- id: Mohankumar Sriram
+  avatar: avatars/mohan.jpg
+  bio: 
+  twitter: mo_sriram
+  #facebook: ghost
+  website: 
+  location: 
+
+
+- id: Another Author
+  avatar: avatars/ghost.png
+  bio: This is another test author with a profile background image
+  twitter: TryGhost
+  facebook: ghost
+  website: https://ghost.org/
+  location: On a plane
+  profile_image: img/alex-knight-326705-unsplash.jpg

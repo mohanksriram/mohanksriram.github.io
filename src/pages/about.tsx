@@ -53,8 +53,8 @@ const About: React.FunctionComponent = () => (
               <p>
                 I'm a software engineer interested in the application of deep learning and reinforcement learning
                 in the field of robotics and healthcare. Currently, I mentor students at <a href="https://www.udacity.com/">Udacity</a>'s Data Scientist Nanodegree program.
-                Previously, I had co-founded a company named <a href="https://neospec.in/">Neospec Labs</a>, where we built a medical device for rapid detection of jaundice in neonates.
-                Prior to that, I've worked at <a href="https://www.newmindrobotics.com/">Newmind Robotics</a> and <a href="https://www.myslingstudio.com/">SlingMedia </a>.
+                Previously, I had co-founded a company named <a href="https://neospec.in/">Neospec Labs</a>, where we built a medical device for the rapid detection of jaundice in neonates.
+                Prior to that, I worked at <a href="https://www.newmindrobotics.com/">Newmind Robotics</a> and <a href="https://www.myslingstudio.com/">SlingMedia </a>.
                 Have a look at my <a href="https://github.com/mohankumarSriram/cv/blob/master/cv.pdf"> resume </a> for more information.
               </p>
             </div>

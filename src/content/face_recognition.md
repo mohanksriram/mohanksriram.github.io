@@ -24,7 +24,10 @@ Let us see how the face recognition engine operates:
 
 ![Face Recognition Engine](./img/face-recognition/data_flow.jpg 'Face Recognition Engine')
 
-### 1. FaceDetecor: Receives an image from the camera source, finds the location of the face in the image.
+### 1. FaceDetecor: 
+
+- Receives an image from the camera source, finds the location of the face in the image.
+
 There are multiple pre-trained detectors available online: [mtcnn](https://github.com/ipazc/mtcnn), [face_recognition](https://github.com/ageitgey/face_recognition). But for our real-time use case, we need a really fast detector. After benchmarking several detectors, I found that opencv's [dnn](https://github.com/opencv/opencv/tree/master/samples/dnn/face_detector) face detector has an inference time that is an order of magnitude better than mtcnn, and other detectors. This network is based on SSD Framework with a resnet-10 like architecture.
 
 Here's a look at what enters the detector and leaves the detector.
@@ -33,7 +36,9 @@ Here's a look at what enters the detector and leaves the detector.
 
 Have a look at the FaceDetector class [here](https://github.com/mohankumarSriram/face-detector-app/blob/master/services/face_detector.py).
 
-### 2. Face Describer: Receives the cropped face and converts it into a multi-dimensional embedding vector
+### 2. Face Describer: 
+
+- Receives the cropped face and converts it into a multi-dimensional embedding vector
 
 For our face recognition system, we have two main requirements.
 1. Whenever a new person needs to be added for recognition, the number of photos of the person might be limited. The system must be capable of picking up the person with a handful of examples.
@@ -56,10 +61,12 @@ The network is trained to minimize inter-class distances and maximize intra-clas
 
 Have a look at the FaceDescriber class [here](https://github.com/mohankumarSriram/face-detector-app/blob/master/services/face_describer.py)
 
-### Face Verifier: Receives the embedding vector, compares with existing vectors to produce the most similar class
+### Face Verifier: 
 
-- During the time of inference, we calculate the similarity measure between the stored embedding vectors for each of the classes and the new embedding.
-- We use these similarity distances to assign the new class.
+- Receives the embedding vector, compares with existing vectors to produce the most similar class
+
+1. During the time of inference, we calculate the similarity measure between the stored embedding vectors for each of the classes and the new embedding.
+2. We use these similarity distances to assign the most similar (min-distance) class.
 
 You can find the Faceverifier class [here](https://github.com/mohankumarSriram/face-detector-app)
 
@@ -67,7 +74,8 @@ Here's a look at the entire application!
 
 ![demo](./img/face-recognition/final_demo.gif)
 
-### Show me the code: https://github.com/mohankumarSriram/face-detector-app
+### Github repo: https://github.com/mohankumarSriram/face-detector-app
+
 
 ### Conclusion
 

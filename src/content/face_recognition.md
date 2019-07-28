@@ -34,7 +34,7 @@ Here's a look at what enters the detector and leaves the detector.
 
 ![hrithik](./img/face-recognition/hrithik_detector.jpg)
 
-Have a look at the FaceDetector class [here](https://github.com/mohankumarSriram/face-detector-app/blob/master/services/face_detector.py).
+Have a look at the FaceDetector class [here.](https://github.com/mohankumarSriram/face-detector-app/blob/master/services/face_detector.py)
 
 ### 2. Face Describer: 
 
@@ -74,7 +74,8 @@ Here's a look at the entire application!
 
 ![demo](./img/face-recognition/final_demo.gif)
 
-### Github repo: https://github.com/mohankumarSriram/face-detector-app
+### Github repo: 
+https://github.com/mohankumarSriram/face-detector-app
 
 
 ### Conclusion

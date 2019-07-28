@@ -35,7 +35,10 @@
     <img class="gatsby-resp-image-image" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white" alt="Face Recognition Engine" title="Face Recognition Engine" src="/static/9e783b28edb226db020729dddb3fd7b0/4acde/data_flow.jpg" srcSet="/static/9e783b28edb226db020729dddb3fd7b0/e33f8/data_flow.jpg 293w, /static/9e783b28edb226db020729dddb3fd7b0/d5ce0/data_flow.jpg 585w, /static/9e783b28edb226db020729dddb3fd7b0/4acde/data_flow.jpg 751w" sizes="(max-width: 751px) 100vw, 751px"/>
   </span>
   </a></p>
-<h3>1. FaceDetecor: Receives an image from the camera source, finds the location of the face in the image.</h3>
+<h3>1. FaceDetecor:</h3>
+<ul>
+<li>Receives an image from the camera source, finds the location of the face in the image.</li>
+</ul>
 <p>There are multiple pre-trained detectors available online: <a href="https://github.com/ipazc/mtcnn">mtcnn</a>, <a href="https://github.com/ageitgey/face_recognition">face_recognition</a>. But for our real-time use case, we need a really fast detector. After benchmarking several detectors, I found that opencv’s <a href="https://github.com/opencv/opencv/tree/master/samples/dnn/face_detector">dnn</a> face detector has an inference time that is an order of magnitude better than mtcnn, and other detectors. This network is based on SSD Framework with a resnet-10 like architecture.</p>
 <p>Here’s a look at what enters the detector and leaves the detector.</p>
 <p><a class="gatsby-resp-image-link" href="/static/d39467bec93d9d78e8df4d66b4bb4c1f/6c717/hrithik_detector.jpg" style="display:block" target="_blank" rel="noopener">
@@ -45,7 +48,10 @@
   </span>
   </a></p>
 <p>Have a look at the FaceDetector class <a href="https://github.com/mohankumarSriram/face-detector-app/blob/master/services/face_detector.py">here</a>.</p>
-<h3>2. Face Describer: Receives the cropped face and converts it into a multi-dimensional embedding vector</h3>
+<h3>2. Face Describer:</h3>
+<ul>
+<li>Receives the cropped face and converts it into a multi-dimensional embedding vector</li>
+</ul>
 <p>For our face recognition system, we have two main requirements.</p>
 <ol>
 <li>Whenever a new person needs to be added for recognition, the number of photos of the person might be limited. The system must be capable of picking up the person with a handful of examples.</li>
@@ -77,15 +83,22 @@ The network is trained to minimize inter-class distances and maximize intra-clas
   </span>
   </a></p>
 <p>Have a look at the FaceDescriber class <a href="https://github.com/mohankumarSriram/face-detector-app/blob/master/services/face_describer.py">here</a></p>
-<h3>Face Verifier: Receives the embedding vector, compares with existing vectors to produce the most similar class</h3>
+<h3>Face Verifier:</h3>
 <ul>
-<li>During the time of inference, we calculate the similarity measure between the stored embedding vectors for each of the classes and the new embedding.</li>
-<li>We use these similarity distances to assign the new class.</li>
+<li>
+<p>Receives the embedding vector, compares with existing vectors to produce the most similar class</p>
+</li>
+<li>
+<p>During the time of inference, we calculate the similarity measure between the stored embedding vectors for each of the classes and the new embedding.</p>
+</li>
+<li>
+<p>We use these similarity distances to assign the most similar (min-distance) class.</p>
+</li>
 </ul>
 <p>You can find the Faceverifier class <a href="https://github.com/mohankumarSriram/face-detector-app">here</a></p>
 <p>Here’s a look at the entire application!</p>
 <p><img src="/final_demo-599bcbadbf340b863d8f6375a069ba4d.gif" alt="demo"/></p>
-<h3>Show me the code: <a href="https://github.com/mohankumarSriram/face-detector-app">https://github.com/mohankumarSriram/face-detector-app</a></h3>
+<h3>Github repo: <a href="https://github.com/mohankumarSriram/face-detector-app">https://github.com/mohankumarSriram/face-detector-app</a></h3>
 <h3>Conclusion</h3>
 <p>In this blog, you have seen how to build a face recognition app using web camera. Please contact me if you need help setting up the app for an IP camera or any other source. Don’t forget to fork the repo and give it a star! If you have any feature requests, feel free to create a new issue on the repo.</p>
 <p>I currently provide full stack machine learning and deep learning solutions, you can reach me at mohankumarsriram7@gmail.com</p>

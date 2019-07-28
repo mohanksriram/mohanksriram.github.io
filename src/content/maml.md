@@ -1,7 +1,7 @@
 ---
 title: "Model-Agnostic Meta-Learning"
 author: Mohankumar Sriram
-tags: [Meta Learning]
+tags: [Meta Learning, Theory]
 image: img/one-shot-post/learn-to-learn.jpg
 date: "2019-06-16T10:00:00.000Z"
 draft: false

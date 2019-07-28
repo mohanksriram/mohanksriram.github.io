@@ -1,4 +1,196 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ghost]]></title><description><![CDATA[The professional publishing platform]]></description><link>https://gatsby-casper.netlify.com</link><generator>RSS for Node</generator><lastBuildDate>Thu, 20 Jun 2019 09:55:22 GMT</lastBuildDate><item><title><![CDATA[Model-Agnostic Meta-Learning]]></title><description><![CDATA[Welcome to this first post on meta learning! This post assumes that the reader is already familiar with the basic neural network…]]></description><link>https://gatsby-casper.netlify.com/maml/</link><guid isPermaLink="false">https://gatsby-casper.netlify.com/maml/</guid><pubDate>Sun, 16 Jun 2019 10:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Welcome to this first post on meta learning! This post assumes that the reader is already familiar with the basic neural network architectures and their training processes. Assuming you are ready, let’s begin!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ghost]]></title><description><![CDATA[The professional publishing platform]]></description><link>https://gatsby-casper.netlify.com</link><generator>RSS for Node</generator><lastBuildDate>Sun, 28 Jul 2019 07:31:43 GMT</lastBuildDate><item><title><![CDATA[Face Recognition]]></title><description><![CDATA[A Web Application for Face Recognition using any camera source.In this blog post, we will see how to create a web application for facial…]]></description><link>https://gatsby-casper.netlify.com/face_recognition/</link><guid isPermaLink="false">https://gatsby-casper.netlify.com/face_recognition/</guid><pubDate>Fri, 26 Jul 2019 10:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;A Web Application for Face Recognition using any camera source.&lt;/h2&gt;
+&lt;p&gt;In this blog post, we will see how to create a web application for facial recognition. This application can serve as the basis for a real-time facial recognition system at your company/college. We use the latest pre-trained deep learning models. We will start by exploring the architecture of the system and as we move along, dive into the details.&lt;/p&gt;
+&lt;p&gt;Here is a look at the overall setup of the system.&lt;/p&gt;
+&lt;p&gt;&lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/68109929ce880787990686397824dd16/09e65/face_detector.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 751px;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 22.769640479360852%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsSAAALEgHS3X78AAAA5UlEQVQY022M7VKDMBBFef93cqw4FvsOdbRFaHAghCYBytdxG7H1hztzkzt77t6o9xW910GdK3G2wRiDtQ7vTNj17Q9vxXtnqbSmro34hnAv/BIyJdFQvdBkT5yzmEkneHNk//ZOlikuzZ6hfMZ8Cs9j5npHZwsOx5Q8V5I9YPNH4RvqdCMdD0SjfsUXCe1XwlCJNyllqTGNY3Qfstvi1HblO/xZoXUtMoytoi+TcO8LuVUxEczctEzyL9xm+d395feZppGu8/Sr5mm4FkpuudcEL0/QWv8fv07X9ZxOKijLc6xzfANZSX3/KZlRQQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;&lt;/span&gt;
+    &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Face Detector&quot;
+        title=&quot;detector&quot;
+        src=&quot;/static/68109929ce880787990686397824dd16/09e65/face_detector.png&quot;
+        srcset=&quot;/static/68109929ce880787990686397824dd16/bc34b/face_detector.png 293w,
+/static/68109929ce880787990686397824dd16/da9f0/face_detector.png 585w,
+/static/68109929ce880787990686397824dd16/09e65/face_detector.png 751w&quot;
+        sizes=&quot;(max-width: 751px) 100vw, 751px&quot;
+      /&gt;
+  &lt;/span&gt;
+  &lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;React Front End: Accesses the web camera, send frames for prediction &lt;/li&gt;
+&lt;li&gt;Flask Back End: Receive frames, push frames through the face recognition engine, return predictions.&lt;/li&gt;
+&lt;li&gt;Face Recognition Engine: Localize faces in a frame, predict the person to whom the face belongs to. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let us see how the face recognition engine operates:&lt;/p&gt;
+&lt;p&gt;&lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9e783b28edb226db020729dddb3fd7b0/4acde/data_flow.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 751px;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 84.02130492676432%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAARABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHvLmNCkAD/xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAEFAh//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAY/Ah//xAAZEAACAwEAAAAAAAAAAAAAAAAAARARMUH/2gAIAQEAAT8hoUcFnC4eCP/aAAwDAQACAAMAAAAQnM8A/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPxAf/8QAFREBAQAAAAAAAAAAAAAAAAAAIEH/2gAIAQIBAT8Qo//EAB4QAQACAgEFAAAAAAAAAAAAAAEAESExEEFRcZHB/9oACAEBAAE/EO63WukWGzPuFJdV5nxK5IC4B0kNHBpP/9k=&apos;); background-size: cover; display: block;&quot;
+    &gt;&lt;/span&gt;
+    &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Face Recognition Engine&quot;
+        title=&quot;Face Recognition Engine&quot;
+        src=&quot;/static/9e783b28edb226db020729dddb3fd7b0/4acde/data_flow.jpg&quot;
+        srcset=&quot;/static/9e783b28edb226db020729dddb3fd7b0/e33f8/data_flow.jpg 293w,
+/static/9e783b28edb226db020729dddb3fd7b0/d5ce0/data_flow.jpg 585w,
+/static/9e783b28edb226db020729dddb3fd7b0/4acde/data_flow.jpg 751w&quot;
+        sizes=&quot;(max-width: 751px) 100vw, 751px&quot;
+      /&gt;
+  &lt;/span&gt;
+  &lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;1. FaceDetecor: Receives an image from the camera source, finds the location of the face in the image.&lt;/h3&gt;
+&lt;p&gt;There are multiple pre-trained detectors available online: &lt;a href=&quot;https://github.com/ipazc/mtcnn&quot;&gt;mtcnn&lt;/a&gt;, &lt;a href=&quot;https://github.com/ageitgey/face_recognition&quot;&gt;face_recognition&lt;/a&gt;. But for our real-time use case, we need a really fast detector. After benchmarking several detectors, I found that opencv’s &lt;a href=&quot;https://github.com/opencv/opencv/tree/master/samples/dnn/face_detector&quot;&gt;dnn&lt;/a&gt; face detector has an inference time that is an order of magnitude better than mtcnn, and other detectors. This network is based on SSD Framework with a resnet-10 like architecture.&lt;/p&gt;
+&lt;p&gt;Here’s a look at what enters the detector and leaves the detector.&lt;/p&gt;
+&lt;p&gt;&lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d39467bec93d9d78e8df4d66b4bb4c1f/6c717/hrithik_detector.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 996px;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 39.2570281124498%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAIABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAIDBf/EABQBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAYa4NoT/xAAZEAADAAMAAAAAAAAAAAAAAAABAxICERP/2gAIAQEAAQUCAd2xuF1r/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGhAAAgIDAAAAAAAAAAAAAAAAABECURMhIv/aAAgBAQAGPwKTyIlpUd2f/8QAGxAAAgMAAwAAAAAAAAAAAAAAAREAITFBcaH/2gAIAQEAAT8hAJpKFwKREud+x5ojjqf/2gAMAwEAAgADAAAAEHPP/8QAFhEAAwAAAAAAAAAAAAAAAAAAARAx/9oACAEDAQE/EDF//8QAFhEBAQEAAAAAAAAAAAAAAAAAAAEx/9oACAECAQE/EJqv/8QAGxABAQABBQAAAAAAAAAAAAAAAREAITFBUYH/2gAIAQEAAT8QUdF4MS0nm2EGaO4tLr24xJtVDOB17n//2Q==&apos;); background-size: cover; display: block;&quot;
+    &gt;&lt;/span&gt;
+    &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;hrithik&quot;
+        title=&quot;&quot;
+        src=&quot;/static/d39467bec93d9d78e8df4d66b4bb4c1f/6c717/hrithik_detector.jpg&quot;
+        srcset=&quot;/static/d39467bec93d9d78e8df4d66b4bb4c1f/e33f8/hrithik_detector.jpg 293w,
+/static/d39467bec93d9d78e8df4d66b4bb4c1f/d5ce0/hrithik_detector.jpg 585w,
+/static/d39467bec93d9d78e8df4d66b4bb4c1f/6c717/hrithik_detector.jpg 996w&quot;
+        sizes=&quot;(max-width: 996px) 100vw, 996px&quot;
+      /&gt;
+  &lt;/span&gt;
+  &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Have a look at the FaceDetector class &lt;a href=&quot;https://github.com/mohankumarSriram/face-detector-app/blob/master/services/face_detector.py&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;2. Face Describer: Receives the cropped face and converts it into a multi-dimensional embedding vector&lt;/h3&gt;
+&lt;p&gt;For our face recognition system, we have two main requirements.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Whenever a new person needs to be added for recognition, the number of photos of the person might be limited. The system must be capable of picking up the person with a handful of examples.&lt;/li&gt;
+&lt;li&gt;Any unauthorized person who enters the system must be clearly identified as a stranger.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Traditional neural network architectures with softmax classifiers suffer from two main drawbacks:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Whenever a new person enters the company, we need to add a new label and retrain the entire network.&lt;/li&gt;
+&lt;li&gt;Fixed classifiers are incentivized to classify an unkown person into one of the already available labels with great confidence. Such strong false positives, lead to intruder detection problems.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In order to circumvent these problems, the &lt;a href=&quot;https://arxiv.org/abs/1503.03832&quot;&gt;facenet&lt;/a&gt; paper presents a new approach to identity recognition. &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The network transforms the input image to a multi-dimensional embedding (128D vector). &lt;/li&gt;
+&lt;li&gt;The embedding network is trained using a triplet loss. A Triplet of images: anchor, positive, and negative are chosen in such a way that the anchor and positive belong to the same class, whereas the negative belongs to a different class. The Loss function is shown in the following equation.&lt;br /&gt;
+$ d(anchor, positve) + \delta &amp;#x3C; d(anchor, negative) $.&lt;br /&gt;
+The network is trained to minimize inter-class distances and maximize intra-class distances.&lt;/li&gt;
+&lt;li&gt;For each of the labels, we can produce an average vector of the all the embedding vectors belonging to the same class. We thus obtain 128 dimensional vectors for each of our labels.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/05fa07ad256317653664312febd7f6da/94eb9/pos_sim.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1170px;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 50.64205457463884%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAACdklEQVQoz42SWUiUYRSG5yKC6CYCA7MoEpcx3DALyyU1MwWzVMRRJ01EqlEzNackF0TBJUXRygzXLKXMaFExNMJCsjTcJseNVkwi0hEZ15mn8f+l6CY68HK+j/PwXL0SrVbL0tKSIYvr+0+W16PRaJibm0On16HVLjA/P492YcFwW2Z5+e9I+I/R6/U8bGnijCKesDA55TeKqa+roaq6guKSIq6kpdLX1yuwkulvU4yOqJgYU/Nxcpxxtcqwx/gwMcrnSTUzP74LYHZeFuYWZoTJgylNjyNPEU54kB/BsiDcPZ1paX0iCgtzs9i+ZQPWpsbYmRqRFOJFcXIEZZmx9Hd38kndL4Dp6Urc3Q9w8oQ3NdmJ3MtNIfSoG05Ojuww2UZj4x1RWJCTgfFmCZY7t2Kzx4hUmRdtVbnMfnnHUE8n3R1PBfByagpSqTmubi6UpJylTHEKhewYUktTzMx209x8XxSWFWYjNdmEm+0uQnxdqc2Ioyonie7W26RG+pCfliiAyiwldk5W+PoHkhYdSa0yGn9fb+ztbfE5vo+eN89E4fWCDIw2SvC0NMLbeheVyeHEeNpwLfMcQy8aaG+qEcDqugqiziuJSS5FFiCnKEGBx2E/4pPzCZIH0t7xQBQO9L7mZulVmusraaws5+WjBu7eKkP1tstw1rGo1Qjg9NRXTkcqkMkTsHHwwsrWlQuxlwiJuIjNfj8et3aKwn/VRadbq4z4fv6qDwdHD5wOHkG61xk/3wBCg6OwtnPBwuoQbW1donBpcZGVlZXfWV0Vt251Veif3lDmtfk5o2FYpWZgUMX7kXEmxycYHlIJ/8GBYTQzswL3C/djUYwQOe84AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;&lt;/span&gt;
+    &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;pos_sim&quot;
+        title=&quot;&quot;
+        src=&quot;/static/05fa07ad256317653664312febd7f6da/913fc/pos_sim.png&quot;
+        srcset=&quot;/static/05fa07ad256317653664312febd7f6da/bc34b/pos_sim.png 293w,
+/static/05fa07ad256317653664312febd7f6da/da9f0/pos_sim.png 585w,
+/static/05fa07ad256317653664312febd7f6da/913fc/pos_sim.png 1170w,
+/static/05fa07ad256317653664312febd7f6da/94eb9/pos_sim.png 1246w&quot;
+        sizes=&quot;(max-width: 1170px) 100vw, 1170px&quot;
+      /&gt;
+  &lt;/span&gt;
+  &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f4852d2c3ac89c9ee32c5cffb2df24fe/30bcf/neg_sim.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 1170px;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 35.40630182421227%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsSAAALEgHS3X78AAAB5UlEQVQoz4WQTWjScRjHPQQbQTGonUblKIgirFOHLkGLOgQddiopQVZEji4xNrK3QyzYjlFrzMh0Ks6aLY2VrlajTNYUX2ibmL05Bi3Ll03n8u///+mHUtceeHjge/h8v99HxX9Gqsrk83nKa2tIUvWfXhX635WVulapVFAF3kwx6nLgcbvwPXUzOT5G4OU4U34v0eBr0ql5ZFlGkQVMrvAxmSASCbGUWSRXyFAs/iKbSZNKxFAEWKXXtrO5UYW6eT3bmxvoOdHGoLEDc38Xn2ZDLCTjSMIZRRJxS/xcSpP8/IERl5mLnacIhyZIxl7gcw+KBiKhQX9SgBrZvXUTBzStXNEewTN0k9KPWYL+R3jsJuGsoKwWUVaylEuFWj3T7T4Oa7YQj7/j+7cY05MP68CuTh0a9Uba9qk5ffwQ7r5uhq5dwD8yQK+hHaNBVwOMDtuZCwYoZDMsV1ax3Ollf2sTRuMlkTxH5mtM/LOKque8lpYNKo7tbeGoSGjp1qE/uIdbV8+xEPfxzGmqAW8YjTjvDhCfec+ZjrNsa2oQu45dO3bSf/0yy4vJOnD67Ssclnv4x1w8cdqYmfDw2GEhEQkKjIL0u1QDRsNh5mNRviRT2K3DPLhvxma1YRX3uddLeSVXe80fBc61Ae7tKOwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;&lt;/span&gt;
+    &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;neg_sim&quot;
+        title=&quot;&quot;
+        src=&quot;/static/f4852d2c3ac89c9ee32c5cffb2df24fe/913fc/neg_sim.png&quot;
+        srcset=&quot;/static/f4852d2c3ac89c9ee32c5cffb2df24fe/bc34b/neg_sim.png 293w,
+/static/f4852d2c3ac89c9ee32c5cffb2df24fe/da9f0/neg_sim.png 585w,
+/static/f4852d2c3ac89c9ee32c5cffb2df24fe/913fc/neg_sim.png 1170w,
+/static/f4852d2c3ac89c9ee32c5cffb2df24fe/30bcf/neg_sim.png 1206w&quot;
+        sizes=&quot;(max-width: 1170px) 100vw, 1170px&quot;
+      /&gt;
+  &lt;/span&gt;
+  &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Have a look at the FaceDescriber class &lt;a href=&quot;https://github.com/mohankumarSriram/face-detector-app/blob/master/services/face_describer.py&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Face Verifier: Receives the embedding vector, compares with existing vectors to produce the most similar class&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;During the time of inference, we calculate the similarity measure between the stored embedding vectors for each of the classes and the new embedding.&lt;/li&gt;
+&lt;li&gt;We use these similarity distances to assign the new class.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can find the Faceverifier class &lt;a href=&quot;https://github.com/mohankumarSriram/face-detector-app&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here’s a look at the entire application!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/final_demo-599bcbadbf340b863d8f6375a069ba4d.gif&quot; alt=&quot;demo&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Show me the code: &lt;a href=&quot;https://github.com/mohankumarSriram/face-detector-app&quot;&gt;https://github.com/mohankumarSriram/face-detector-app&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;In this blog, you have seen how to build a face recognition app using web camera. Please contact me if you need help setting up the app for an IP camera or any other source. Don’t forget to fork the repo and give it a star! If you have any feature requests, feel free to create a new issue on the repo.&lt;/p&gt;
+&lt;p&gt;I currently provide full stack machine learning and deep learning solutions, you can reach me at mohankumarsriram7@gmail.com&lt;/p&gt;
+&lt;h3&gt;References&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Florian Schroff, Dmitry Kalenichenko, James Philbin. &lt;a href=&quot;https://arxiv.org/abs/1503.03832&quot;&gt;“FaceNet: A Unified Embedding for Face Recognition and Clustering.”&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/how-to-develop-a-face-recognition-system-using-facenet-in-keras-and-an-svm-classifier/&quot;&gt;Facenet with SVM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/AIInAi/tf-insightface&quot;&gt;Server Structure&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[Model-Agnostic Meta-Learning]]></title><description><![CDATA[Welcome to this first post on meta learning! This post assumes that the reader is already familiar with the basic neural network…]]></description><link>https://gatsby-casper.netlify.com/maml/</link><guid isPermaLink="false">https://gatsby-casper.netlify.com/maml/</guid><pubDate>Sun, 16 Jun 2019 10:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Welcome to this first post on meta learning! This post assumes that the reader is already familiar with the basic neural network architectures and their training processes. Assuming you are ready, let’s begin!&lt;/p&gt;
 &lt;p&gt;&lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/static/cd030ee7e4e0c904d12eb69dfedd0e19/97529/learn-to-learn.jpg&quot;

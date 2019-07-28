@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ghost]]></title><description><![CDATA[The professional publishing platform]]></description><link>https://gatsby-casper.netlify.com</link><generator>RSS for Node</generator><lastBuildDate>Sun, 28 Jul 2019 07:39:50 GMT</lastBuildDate><item><title><![CDATA[Face Recognition]]></title><description><![CDATA[A Web Application for Face Recognition using any camera source.In this blog post, we will see how to create a web application for facial…]]></description><link>https://gatsby-casper.netlify.com/face_recognition/</link><guid isPermaLink="false">https://gatsby-casper.netlify.com/face_recognition/</guid><pubDate>Fri, 26 Jul 2019 10:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;A Web Application for Face Recognition using any camera source.&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ghost]]></title><description><![CDATA[The professional publishing platform]]></description><link>https://gatsby-casper.netlify.com</link><generator>RSS for Node</generator><lastBuildDate>Sun, 28 Jul 2019 07:45:22 GMT</lastBuildDate><item><title><![CDATA[Face Recognition]]></title><description><![CDATA[A Web Application for Face Recognition using any camera source.In this blog post, we will see how to create a web application for facial…]]></description><link>https://gatsby-casper.netlify.com/face_recognition/</link><guid isPermaLink="false">https://gatsby-casper.netlify.com/face_recognition/</guid><pubDate>Fri, 26 Jul 2019 10:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;A Web Application for Face Recognition using any camera source.&lt;/h2&gt;
 &lt;p&gt;In this blog post, we will see how to create a web application for facial recognition. This application can serve as the basis for a real-time facial recognition system at your company/college. We use the latest pre-trained deep learning models. We will start by exploring the architecture of the system and as we move along, dive into the details.&lt;/p&gt;
 &lt;p&gt;Here is a look at the overall setup of the system.&lt;/p&gt;
 &lt;p&gt;&lt;a
@@ -97,7 +97,7 @@
       /&gt;
   &lt;/span&gt;
   &lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Have a look at the FaceDetector class &lt;a href=&quot;https://github.com/mohankumarSriram/face-detector-app/blob/master/services/face_detector.py&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Have a look at the FaceDetector class &lt;a href=&quot;https://github.com/mohankumarSriram/face-detector-app/blob/master/services/face_detector.py&quot;&gt;here.&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;2. Face Describer:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Receives the cropped face and converts it into a multi-dimensional embedding vector&lt;/li&gt;
@@ -194,7 +194,8 @@ The network is trained to minimize inter-class distances and maximize intra-clas
 &lt;p&gt;You can find the Faceverifier class &lt;a href=&quot;https://github.com/mohankumarSriram/face-detector-app&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Here’s a look at the entire application!&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/final_demo-599bcbadbf340b863d8f6375a069ba4d.gif&quot; alt=&quot;demo&quot;&gt;&lt;/p&gt;
-&lt;h3&gt;Github repo: &lt;a href=&quot;https://github.com/mohankumarSriram/face-detector-app&quot;&gt;https://github.com/mohankumarSriram/face-detector-app&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;Github repo:&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/mohankumarSriram/face-detector-app&quot;&gt;https://github.com/mohankumarSriram/face-detector-app&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Conclusion&lt;/h3&gt;
 &lt;p&gt;In this blog, you have seen how to build a face recognition app using web camera. Please contact me if you need help setting up the app for an IP camera or any other source. Don’t forget to fork the repo and give it a star! If you have any feature requests, feel free to create a new issue on the repo.&lt;/p&gt;
 &lt;p&gt;I currently provide full stack machine learning and deep learning solutions, you can reach me at mohankumarsriram7@gmail.com&lt;/p&gt;

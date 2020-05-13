@@ -51,8 +51,8 @@ const About: React.FunctionComponent = () => (
 
             <div className="post-content">
               <p>
-                I'm a software engineer primarily interested in building autonomous systems and agents which deliver reliable performance in the real world. Currently, I work as a software consultant tackling customer needs in identity authentication and visual inspection in
-                the manufacturing sector. Previously, I had co-founded a company named <a href="https://neospec.in/">Neospec Labs</a>, where we built a medical device for the rapid detection of jaundice in neonates.
+                I'm a software engineer primarily interested in building autonomous systems and agents which deliver reliable performance in the real world. Currently, I work as a perception software engineer at <a href="https://www.cynlr.com">CynLr</a>. 
+                Previously, I had co-founded a company named <a href="https://neospec.in/">Neospec Labs</a>, where we built a medical device for the rapid detection of jaundice in neonates.
                 Prior to that, I worked at <a href="https://www.newmindrobotics.com/">Newmind Robotics</a> and <a href="https://www.myslingstudio.com/">SlingMedia </a>.
                 Have a look at my <a href="https://github.com/mohankumarSriram/cv/blob/master/cv.pdf"> resume </a> for more information.
               </p>

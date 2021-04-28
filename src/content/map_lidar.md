@@ -20,9 +20,6 @@ The system consists of two important components:
 1. Mechanical system that rotates the 2D-LIDAR around the third dimension. Every degree of rotation helps us acquire new 2D-depth information.
 2. Software system (ROS Node) that keeps track of the past 2D frames and stiches them together into a cohesive 3D map.
 
-The design challenges mainly revolved around repeatability and power consumption. 
-
-Have a look at the system in action.
-![Working](./img/3d-map/working.gif)
+The design challenges mainly revolved around repeatability and power consumption.
 
 If you have similar requirements or another challenging project, feel free to reach out to me.

@@ -1,15 +1,14 @@
 import IndexLayout from '../layouts';
-import Wrapper from '../components/Wrapper';
+import { Wrapper } from '../components/Wrapper';
 import SiteNav from '../components/header/SiteNav';
 import { SiteHeader, outer, inner, SiteMain } from '../styles/shared';
-import * as React from 'react';
-import { css } from '@emotion/core';
+import React from 'react';
+import { css } from '@emotion/react';
 
 import { PostFullHeader, PostFullTitle, PostFull } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
-import Footer from '../components/Footer';
+import { Footer } from '../components/Footer';
 import Helmet from 'react-helmet';
-import {Link} from 'gatsby';
 
 const PageTemplate = css`
   .site-main {
@@ -27,7 +26,7 @@ const profileImage = css`
   height: 360px;
 `;
 
-const About: React.FunctionComponent = () => (
+const About: React.FC = () => (
   <IndexLayout>
     <Helmet>
       <title>Contact</title>
@@ -47,7 +46,7 @@ const About: React.FunctionComponent = () => (
           <PostFullContent className="post-full-content">
             <div className="post-content">
               <p>
-                You can reach me at: mohankumarsriram7@gmail.com
+                You can reach me at: mohanksriram@gmail.com
               </p>
             </div>
           </PostFullContent>

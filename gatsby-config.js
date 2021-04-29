@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: 'Ghost',
-    description: 'The professional publishing platform',
+    title: 'Gatsby Casper',
+    description: 'A port of the casper blog built for gatsby',
     siteUrl: 'https://gatsby-casper.netlify.com', // full path to blog - no ending slash
   },
   mapping: {
@@ -11,7 +12,13 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-sitemap',
-    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        defaultQuality: 100,
+        stripMetadata: true,
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -32,12 +39,12 @@ module.exports = {
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
-          'gatsby-remark-abbr',
+          'gatsby-remark-reading-time',
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 1170,
-              quality: 90,
+              maxWidth: 2000,
+              quality: 100,
             },
           },
         ],
@@ -50,8 +57,8 @@ module.exports = {
         siteUrl: 'https://gatsby-casper.netlify.com',
       },
     },
-    'gatsby-plugin-emotion',
     'gatsby-plugin-typescript',
+    'gatsby-plugin-emotion',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
@@ -63,7 +70,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-XXXX-Y',
         // Puts tracking script in the head instead of the body

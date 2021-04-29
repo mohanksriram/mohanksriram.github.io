@@ -1,21 +1,28 @@
 import IndexLayout from '../layouts';
-import Wrapper from '../components/Wrapper';
+import { Wrapper } from '../components/Wrapper';
 import SiteNav from '../components/header/SiteNav';
 import { SiteHeader, outer, inner, SiteMain } from '../styles/shared';
-import * as React from 'react';
-import { css } from '@emotion/core';
+import React from 'react';
+import { css } from '@emotion/react';
 
 import { PostFullHeader, PostFullTitle, PostFull } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
-import Footer from '../components/Footer';
-import Helmet from 'react-helmet';
-import profilePic from '../content/avatars/mohan.jpg';
-import {Link} from 'gatsby';
+import { Footer } from '../components/Footer';
+import { Helmet } from 'react-helmet';
+import profilePic from '../content/avatars/mohan_profile.jpg';
 
 const PageTemplate = css`
   .site-main {
-    background: #fff;
+    margin-top: 64px;
     padding-bottom: 4vw;
+    background: #fff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .site-main {
+      /* background: var(--darkmode); */
+      background: ${colors.darkmode};
+    }
   }
 `;
 
@@ -28,7 +35,7 @@ const profileImage = css`
   height: 360px;
 `;
 
-const About: React.FunctionComponent = () => (
+const About: React.FC = () => (
   <IndexLayout>
     <Helmet>
       <title>About</title>
